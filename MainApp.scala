@@ -6,5 +6,15 @@ object MainApp {
     val item2 =new StoreItem(2, "PC", 800)
     val item3 =new StoreItem(3, "Smartphone", 1200)
     val item4 =new StoreItem(4, "PC", 1400)
+
+    db.store(item1)
+    db.sumUp()
+    db.store(item2)
+    db.store(item3)
+    db.store(item4)
+    db.sumUp()
+    db.delete(1)
+    db.sumUp()
+    db.search("PC")
   }
 }

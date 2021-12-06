@@ -1,5 +1,5 @@
 class Database extends Warenkorb{
-   private var storedItems:Array[StoreItem] = new Array[StoreItem](20)
+   private var storedItems:Array[StoreItem] = new Array[StoreItem](0)
 
   override def delete(id:Int): Array[StoreItem] = {
     var b :Boolean = false
@@ -29,11 +29,14 @@ class Database extends Warenkorb{
   }
 
   override def sortByValueAsc(): Array[StoreItem] = {
-    val sort :Array[StoreItem] = storedItems.sortBy(_.value)
-    sort
+    val sortAuf :Array[StoreItem] = storedItems.sortBy(_.value)
+    sortAuf
   }
 
-  override def sortByValueDesc(): Array[StoreItem] = ???
+  override def sortByValueDesc(): Array[StoreItem] = {
+    val sortAb :Array[StoreItem] =this.sortByValueAsc().reverse
+    sortAb
+  }
 
   override def store(item: StoreItem): Array[StoreItem] = {
     storedItems :+= item
@@ -44,8 +47,9 @@ class Database extends Warenkorb{
   override def sumUp(): Int = {
     var total = 0;
     for(i<-storedItems){
-      total+=i.value
-    }
+      total += i.value
+  }
+    println(total)
     total
   }
 }
